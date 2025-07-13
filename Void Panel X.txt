@@ -179,7 +179,15 @@ UIClick:Stop()
 
 UIGui.Name = "UIGui"
 UIGui.Parent = game.CoreGui
-game.CoreGui.TopBarApp.TopBarFrame.LeftFrame.ChatIcon.Size = UDim2.new(0, 32, 1, 0)
+local success, result = pcall(function()
+    local chatIcon = game.CoreGui:FindFirstChild("TopBarApp") and
+                     game.CoreGui.TopBarApp:FindFirstChild("TopBarFrame") and
+                     game.CoreGui.TopBarApp.TopBarFrame:FindFirstChild("LeftFrame") and
+                     game.CoreGui.TopBarApp.TopBarFrame.LeftFrame:FindFirstChild("ChatIcon")
+    if chatIcon then
+        chatIcon.Size = UDim2.new(0, 32, 1, 0)
+    end
+end)
 game.CoreGui.UIGui.Enabled = true
 
 HeadUI.Position = UDim2.new(99, 0, 99, 0)
